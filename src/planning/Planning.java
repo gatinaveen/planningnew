@@ -18,7 +18,7 @@ public class Planning {
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		//live start
-				/*ArrayList<String> cliArgsCap = new ArrayList<String>();
+				ArrayList<String> cliArgsCap = new ArrayList<String>();
 				cliArgsCap.add("--web-security=false");
 				cliArgsCap.add("--ssl-protocol=any");
 				cliArgsCap.add("--ignore-ssl-errors=true");
@@ -30,11 +30,10 @@ public class Planning {
 				System.out.println(driver.getCurrentUrl());
 				Dimension d = new Dimension(1024,768);
 				driver.manage().window().setSize(d);
-				Snippet.screenshot(driver);
-				System.out.println("selenium test starts");*/
+				System.out.println("selenium test starts");
 				//live end
 				//local start
-				ArrayList<String> cliArgsCap = new ArrayList<String>();
+				/*ArrayList<String> cliArgsCap = new ArrayList<String>();
 				cliArgsCap.add("--web-security=false");
 				cliArgsCap.add("--ssl-protocol=any");
 				cliArgsCap.add("--ignore-ssl-errors=true");
@@ -42,14 +41,14 @@ public class Planning {
 				caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap );
 				caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/home/codexa/phantomjs/bin/phantomjs");
 				WebDriver driver = new PhantomJSDriver(Configure_local(cliArgsCap), caps);
-				
+				*/
 				//WebDriver driver = new FirefoxDriver();
 				/*String Username="codexa";
 				String Password="codexa15";
 				driver.get("https://" + Username + ":" + Password + "@" + "staging.codexa.fr");*/
-				driver.get("https://ci.codexa.fr");
+				/*driver.get("https://ci.codexa.fr");
 				Dimension d = new Dimension(1024,768);
-				driver.manage().window().setSize(d);
+				driver.manage().window().setSize(d);*/
 				AdminLogin(driver);
 				//local end
 				
@@ -71,6 +70,19 @@ public class Planning {
 	                    (cap.toArray(new String[cap.size()])))
 	            .build();
 	}
+	
+	@SuppressWarnings("unused")
+	private static PhantomJSDriverService Configure(ArrayList<String> cap) {
+		File file = new File("/var/www/phantomjs/phantomjs-1.9.8-linux-x86_64/bin/phantomjs");
+	    return new PhantomJSDriverService.Builder().usingPhantomJSExecutable(file)
+	            .usingPort(5555)
+	            .usingCommandLineArguments(
+	                    (cap.toArray(new String[cap.size()])))
+	            .build();
+	}
+	
+	
+	
 	static void AdminLogin(WebDriver driver) {
 		// TODO Auto-generated method stub
 		driver.findElement(By.xpath(".//*[@id='username']")).clear();
