@@ -1,11 +1,16 @@
 package planning;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 public class Planning {
@@ -29,16 +34,16 @@ public class Planning {
 				System.out.println("selenium test starts");*/
 				//live end
 				//local start
-				/*ArrayList<String> cliArgsCap = new ArrayList<String>();
+				ArrayList<String> cliArgsCap = new ArrayList<String>();
 				cliArgsCap.add("--web-security=false");
 				cliArgsCap.add("--ssl-protocol=any");
 				cliArgsCap.add("--ignore-ssl-errors=true");
 				DesiredCapabilities caps = DesiredCapabilities.phantomjs();
 				caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap );
-				caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/usr/lib/phantomjs/phantomjs");
-				WebDriver driver = new PhantomJSDriver(Configure_local(cliArgsCap), caps);*/
+				caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/home/codexa/phantomjs/bin/phantomjs");
+				WebDriver driver = new PhantomJSDriver(Configure_local(cliArgsCap), caps);
 				
-				WebDriver driver = new FirefoxDriver();
+				//WebDriver driver = new FirefoxDriver();
 				/*String Username="codexa";
 				String Password="codexa15";
 				driver.get("https://" + Username + ":" + Password + "@" + "staging.codexa.fr");*/
@@ -56,7 +61,16 @@ public class Planning {
 				}
 	}
 	
-	
+
+	private static PhantomJSDriverService Configure_local(ArrayList<String> cap) {
+		// TODO Auto-generated method stub
+		File file = new File("/home/codexa/phantomjs/bin/phantomjs");
+	    return new PhantomJSDriverService.Builder().usingPhantomJSExecutable(file)
+	            .usingPort(4444)
+	            .usingCommandLineArguments(
+	                    (cap.toArray(new String[cap.size()])))
+	            .build();
+	}
 	static void AdminLogin(WebDriver driver) {
 		// TODO Auto-generated method stub
 		driver.findElement(By.xpath(".//*[@id='username']")).clear();
