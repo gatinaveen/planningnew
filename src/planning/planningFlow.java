@@ -12,10 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class planningFlow {
 	static boolean result = true;
-	public static boolean planningTestCase( WebDriver driver) throws InterruptedException
+	public static boolean planningTestSuite_1( WebDriver driver) throws InterruptedException
 	{
 		
-		System.out.println("----------------------------------Planning Section------------------------");
+		System.out.println("----------------------------------Planning Test Suite 1------------------------");
 		adminCanSeePlanningPageAndAllColumns(driver);
 		adminCanSeePreviousWeekOnClickOfLeftArrow(driver);
 		adminCanSeeNextWeekOnClickOfRightArrow(driver);
