@@ -3,6 +3,7 @@ package planning;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,8 @@ public class planningFlow {
 	static boolean result = true;
 	public static boolean planningTestCase( WebDriver driver) throws InterruptedException
 	{
+		
+		System.out.println("----------------------------------Planning Section------------------------");
 		adminCanSeePlanningPageAndAllColumns(driver);
 		adminCanSeePreviousWeekOnClickOfLeftArrow(driver);
 		adminCanSeeNextWeekOnClickOfRightArrow(driver);
@@ -77,7 +80,7 @@ public class planningFlow {
 		{
 			m="décembre"; 
 		}
-	    String s =driver.findElement(By.cssSelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top > div.datepicker-days > table > tbody > tr:nth-child(3) > td:nth-child(5)")).getText();
+	    //String s =driver.findElement(By.cssSelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top > div.datepicker-days > table > tbody > tr:nth-child(3) > td:nth-child(5)")).getText();
 	    driver.findElement(By.cssSelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top > div.datepicker-days > table > tbody > tr:nth-child(3) > td:nth-child(5)")).click();
 		String p = driver.findElement(By.cssSelector("#offersCalander > div.offersCalander > table > thead > tr:nth-child(1) > th:nth-child(4) > div")).getText();
 		driver.findElement(By.cssSelector("#update-offers > i")).click();
@@ -101,6 +104,7 @@ public class planningFlow {
 		// TODO Auto-generated method stub
 		System.out.println("when I click on 'semaine', I can select a date and see the corresponding week");
 		driver.findElement(By.xpath("//div[@id='sidebar']/ul/li[6]/a/span")).click();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    driver.findElement(By.xpath("//span[2]/font/font")).click();
 	    String m =driver.findElement(By.cssSelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top > div.datepicker-days > table > thead > tr:nth-child(1) > th.datepicker-switch")).getText();
 	    if(m.contains("January"))
@@ -156,7 +160,7 @@ public class planningFlow {
 		String p = driver.findElement(By.cssSelector("#offersCalander > div.offersCalander > table > thead > tr:nth-child(1) > th:nth-child(4) > div")).getText();
 		if(p.contains(m))
 		{
-			if(isTextPresent(s,driver))
+			if(!s.isEmpty())
 			{
 				System.out.println("pass");
 			}
@@ -165,6 +169,7 @@ public class planningFlow {
 				System.out.println("fail");
 				result=false;
 			}
+			
 		}
 		
 	}

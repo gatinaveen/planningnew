@@ -8,6 +8,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -58,10 +59,14 @@ public class Planning {
 					System.out.println("Planning test case fail.");
 					driver.findElement(By.xpath("Planning test case fail."));
 				}
+				else
+				{
+					System.out.println("Planning test case pass");
+				}
 	}
 	
 
-	private static PhantomJSDriverService Configure_local(ArrayList<String> cap) {
+	/*private static PhantomJSDriverService Configure_local(ArrayList<String> cap) {
 		// TODO Auto-generated method stub
 		File file = new File("/home/codexa/phantomjs/bin/phantomjs");
 	    return new PhantomJSDriverService.Builder().usingPhantomJSExecutable(file)
@@ -69,9 +74,8 @@ public class Planning {
 	            .usingCommandLineArguments(
 	                    (cap.toArray(new String[cap.size()])))
 	            .build();
-	}
+	}*/
 	
-	@SuppressWarnings("unused")
 	private static PhantomJSDriverService Configure(ArrayList<String> cap) {
 		File file = new File("/var/www/phantomjs/phantomjs-1.9.8-linux-x86_64/bin/phantomjs");
 	    return new PhantomJSDriverService.Builder().usingPhantomJSExecutable(file)
