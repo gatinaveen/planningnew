@@ -16,11 +16,11 @@ public class planningFlow {
 	{
 		
 		System.out.println("----------------------------------Planning Test Suite 1------------------------");
-		adminCanSeePlanningPageAndAllColumns(driver);
+		/*adminCanSeePlanningPageAndAllColumns(driver);
 		adminCanSeePreviousWeekOnClickOfLeftArrow(driver);
 		adminCanSeeNextWeekOnClickOfRightArrow(driver);
 		adminCanSeecorrespondingWeekOnClickOfsemaineButton(driver);
-		adminCanSeeSamePageOfCalendarAfterRefresh(driver);
+		adminCanSeeSamePageOfCalendarAfterRefresh(driver);*/
 		return result;
 	}
 	
@@ -81,8 +81,8 @@ public class planningFlow {
 			m="décembre"; 
 		}
 	    //String s =driver.findElement(By.cssSelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top > div.datepicker-days > table > tbody > tr:nth-child(3) > td:nth-child(5)")).getText();
+	    String p = driver.findElement(By.cssSelector("#offersCalander > div.offersCalander > table > thead > tr:nth-child(1) > th:nth-child(4) > div")).getText();
 	    driver.findElement(By.cssSelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top > div.datepicker-days > table > tbody > tr:nth-child(3) > td:nth-child(5)")).click();
-		String p = driver.findElement(By.cssSelector("#offersCalander > div.offersCalander > table > thead > tr:nth-child(1) > th:nth-child(4) > div")).getText();
 		driver.findElement(By.cssSelector("#update-offers > i")).click();
 		String q = driver.findElement(By.cssSelector("#offersCalander > div.offersCalander > table > thead > tr:nth-child(1) > th:nth-child(4) > div")).getText();
 		if(p.contains(m))
@@ -155,9 +155,9 @@ public class planningFlow {
 		{
 			m="décembre"; 
 		}
+	    String p = driver.findElement(By.cssSelector("#offersCalander > div.offersCalander > table > thead > tr:nth-child(1) > th:nth-child(4) > div")).getText();
 	    String s =driver.findElement(By.cssSelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top > div.datepicker-days > table > tbody > tr:nth-child(3) > td:nth-child(5)")).getText();
 	    driver.findElement(By.cssSelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top > div.datepicker-days > table > tbody > tr:nth-child(3) > td:nth-child(5)")).click();
-		String p = driver.findElement(By.cssSelector("#offersCalander > div.offersCalander > table > thead > tr:nth-child(1) > th:nth-child(4) > div")).getText();
 		if(p.contains(m))
 		{
 			if(!s.isEmpty())
@@ -374,7 +374,7 @@ public class planningFlow {
 		
 	}
 
-	private static String findDateOfCurrentWeekWednesday() {
+	public static String findDateOfCurrentWeekWednesday() {
 		// TODO Auto-generated method stub
 		String date=null;
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MMMM-yy");

@@ -41,28 +41,37 @@ public class Planning {
 				DesiredCapabilities caps = DesiredCapabilities.phantomjs();
 				caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap );
 				caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/home/codexa/phantomjs/bin/phantomjs");
-				WebDriver driver = new PhantomJSDriver(Configure_local(cliArgsCap), caps);
-				
+				WebDriver driver = new PhantomJSDriver(Configure_local(cliArgsCap), caps);				
 				//WebDriver driver = new FirefoxDriver();
 				/*String Username="codexa";
 				String Password="codexa15";
 				driver.get("https://" + Username + ":" + Password + "@" + "staging.codexa.fr");*/
-				driver.get("https://ci.codexa.fr");
-				Dimension d = new Dimension(1024,768);
-				driver.manage().window().setSize(d);
-				AdminLogin(driver);
+				//driver.get("https://ci.codexa.fr");
+				//Dimension d = new Dimension(1024,768);
+				//driver.manage().window().setSize(d);
+				//AdminLogin(driver);
 				//local end
-				
+				driver.get("https://ci.codexa.fr/");
+				AdminLogin(driver);
 				boolean check1 = planningFlow.planningTestSuite_1(driver);
 				boolean check2 = PlanningFlowSecond.planningTestSuite_2(driver);
 				if(check1!=true)
 				{
 					System.out.println("Planning test Suite 1 fail.");
-					driver.findElement(By.xpath("Planning test suite fail."));
+					driver.findElement(By.xpath("Planning test suite 1 fail."));
 				}
 				else
 				{
 					System.out.println("Planning test suite 1 pass");
+				}
+				if(check2!=true)
+				{
+					System.out.println("Planning test Suite 2 fail.");
+					driver.findElement(By.xpath("Planning test suite 2 fail."));
+				}
+				else
+				{
+					System.out.println("Planning test suite 2 pass");
 				}
 	}
 	
