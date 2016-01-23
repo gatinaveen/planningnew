@@ -49,6 +49,7 @@ public class PlanningFlowSecond {
 			if(!it.equals(oldwindow))
 			{
 				driver.switchTo().window(s);
+				System.out.println();
 			}
 			
 		}
