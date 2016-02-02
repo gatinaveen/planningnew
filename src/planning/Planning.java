@@ -4,11 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -42,7 +40,6 @@ public class Planning {
 				caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap );
 				caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/home/codexa/phantomjs/bin/phantomjs");
 				WebDriver driver = new PhantomJSDriver(Configure_local(cliArgsCap), caps);				
-				//WebDriver driver = new FirefoxDriver();
 				/*String Username="codexa";
 				String Password="codexa15";
 				driver.get("https://" + Username + ":" + Password + "@" + "staging.codexa.fr");*/
@@ -51,11 +48,14 @@ public class Planning {
 				//driver.manage().window().setSize(d);
 				//AdminLogin(driver);
 				//local end
+				//WebDriver driver = new FirefoxDriver();
+				driver.manage().window().maximize();
 				driver.get("https://ci.codexa.fr/");
 				AdminLogin(driver);
-				boolean check1 = planningFlow.planningTestSuite_1(driver);
-				boolean check2 = PlanningFlowSecond.planningTestSuite_2(driver);
-				if(check1!=true)
+				/*boolean check1 = planningFlow.planningTestSuite_1(driver);
+				boolean check2 = PlanningFlowSecond.planningTestSuite_2(driver);*/
+				boolean check3 = PlanningFlowThird.planningTestSuite_3(driver);
+				/*if(check1!=true)
 				{
 					System.out.println("Planning test Suite 1 fail.");
 					driver.findElement(By.xpath("Planning test suite 1 fail."));
@@ -72,10 +72,20 @@ public class Planning {
 				else
 				{
 					System.out.println("Planning test suite 2 pass");
+				}*/
+				if(check3!=true)
+				{
+					System.out.println("Planning test Suite 3 fail.");
+					driver.findElement(By.xpath("Planning test suite 3 fail."));
+				}
+				else
+				{
+					System.out.println("Planning test suite 3 pass");
 				}
 	}
 	
 
+	
 	private static PhantomJSDriverService Configure_local(ArrayList<String> cap) {
 		// TODO Auto-generated method stub
 		File file = new File("/home/codexa/phantomjs/bin/phantomjs");
@@ -86,10 +96,11 @@ public class Planning {
 	            .build();
 	}
 	
+	@SuppressWarnings("unused")
 	private static PhantomJSDriverService Configure(ArrayList<String> cap) {
 		File file = new File("/var/www/phantomjs/phantomjs-1.9.8-linux-x86_64/bin/phantomjs");
 	    return new PhantomJSDriverService.Builder().usingPhantomJSExecutable(file)
-	            .usingPort(5555)
+	            .usingPort(5558)
 	            .usingCommandLineArguments(
 	                    (cap.toArray(new String[cap.size()])))
 	            .build();

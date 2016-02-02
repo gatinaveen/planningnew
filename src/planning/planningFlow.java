@@ -16,11 +16,11 @@ public class planningFlow {
 	{
 		
 		System.out.println("----------------------------------Planning Test Suite 1------------------------");
-		/*adminCanSeePlanningPageAndAllColumns(driver);
+		adminCanSeePlanningPageAndAllColumns(driver);
 		adminCanSeePreviousWeekOnClickOfLeftArrow(driver);
 		adminCanSeeNextWeekOnClickOfRightArrow(driver);
 		adminCanSeecorrespondingWeekOnClickOfsemaineButton(driver);
-		adminCanSeeSamePageOfCalendarAfterRefresh(driver);*/
+		adminCanSeeSamePageOfCalendarAfterRefresh(driver);
 		return result;
 	}
 	
